@@ -36,7 +36,7 @@ To use the HTML Bundler in your web page, follow these steps:
     This script use ES6 module feature. Be sur to specify type='module' when including your main js file to your index.html. 
 
     ```html 
-        <script type='module' src='path/to/script/js'><script>
+    <script type='module' src='path/to/script.js'><script>
     ```
     <br>
 
