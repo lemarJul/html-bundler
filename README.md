@@ -33,11 +33,14 @@ To use the HTML Bundler in your web page, follow these steps:
    import bundleDocument from "path/to/documentBundler.js";
    ```
 
-    This script use ES6 module feature. Be sur to specify type='module' when including your main js file to your index.html. 
+   This script use ES6 module feature. Be sur to specify type='module' when including your main js file to your index.html.
 
-    ```html 
-    <script type='module' src='path/to/script.js'><script>
-    ```
+   ```html
+   <!-- index.html -->
+
+   <script type='module' src='path/to/script.js' defer><script>
+   ```
+
     <br>
 
 2. Add the custom attribute include-html to any HTML element where you want to include an external HTML fragment:
@@ -45,32 +48,35 @@ To use the HTML Bundler in your web page, follow these steps:
    ```html
    <div include-html="path/to/your/external-fragment.html"></div>
    ```
+
     <br>
 
-3. Call the bundle() function to load and include the HTML fragments:
+3. Call bundleHTML() to load and include the HTML fragments:
 
    ```javascript
-   bundleDocument().then(() => {
+   //script.js
+
+   bundleHTML().then(() => {
      // rest of your code
    });
 
    //or if you prefer:
-   bundleDocument().then(onBundledDocument);
+   bundleHTML().then(onBundledDocument);
 
-   function onBundledDocument() {
-    // ...rest of your code
-    };
+   function onBundledHTML() {
+     // ...rest of your code
+   }
    ```
+
     <br>
 
-4. <span style='background-color:slateblue;border-radius:5px;padding:5px;font-size:large'>🪄</span> 
-Your HTML fragments will be loaded and included dynamically, replacing the elements with the include-html attribute.
-<br>
+4. 🪄 
+   Your HTML fragments will be loaded and included dynamically, replacing the elements with the include-html attribute.
+   <br>
 
 ## Options
 
 This HTML Bundler does not have any specific options or configuration settings. However, you can customize the name of the custom attribute (include-html) by modifying the customAttribute variable in the script if needed.
-
 
 ## Contributing
 
@@ -83,4 +89,3 @@ This script is open-source and available under the MIT License.
 ## Author
 
 Julien Lemarchand
-

@@ -1,35 +1,36 @@
 const customAttribute = "include-html";
 
-export default function bundleDocument(document = window.document) {
-  const childrenToLoad = getChildrenToLoad(document);
-  return Promise.all([...childrenToLoad].map(loadHTML));
+export default function bundleHTML(element = window.document) {
+  const childrenToInclude = getChildrenToInclude(element);
+  return Promise.all([...childrenToInclude].map(includeHTML));
 }
 
-function loadHTML(element) {
-  const src = element.getAttribute(customAttribute);
-  return fetch(src)
+function getChildrenToInclude(element) {
+  return element.querySelectorAll("[" + customAttribute + "]");
+}
+
+function includeHTML(element) {
+  const rscPath = element.getAttribute(customAttribute);
+  return fetch(rscPath)
     .then((response) => {
       if (!response.ok) {
         throw new Error(
-          "Failed to load " + src + ", status code: " + response.status
+          "Failed to load " + rscPath + ", status code: " + response.status
         );
       }
       return response.text();
     })
     .then((data) => {
       element.innerHTML = data;
-      const childrenToLoad = getChildrenToLoad(element);
-      if (childrenToLoad.length) bundle(element);
+      const childrenToLoad = getChildrenToInclude(element);
+      if (childrenToLoad.length) bundleHTML(element);
     })
     .catch((error) => {
       console.error(error);
     })
     .finally(() => {
       element.removeAttribute("load-html");
-      console.log("loaded " + src);
+      console.log("Included HTML: " + rscPath);
     });
 }
 
-function getChildrenToLoad(element) {
-  return element.querySelectorAll("[" + customAttribute + "]");
-}
