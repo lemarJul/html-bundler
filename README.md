@@ -25,12 +25,12 @@ However, it's important to note that while the HTML Include Bundler serves as a 
 
 To use the HTML Bundler in your web page, follow these steps:
 
-1. Add htmlBunlder.js to your project and import the module in your main js file:
+1. Add htmlBundler.js to your project and import the module in your main js file:
 
    ```javascript
    //script.js
 
-   import bundleDocument from "path/to/documentBundler.js";
+   import bundleHTML from "path/to/htmlBundler.js";
    ```
 
    This script use ES6 module feature. Be sur to specify type='module' when including your main js file to your index.html.
@@ -46,6 +46,8 @@ To use the HTML Bundler in your web page, follow these steps:
 2. Add the custom attribute include-html to any HTML element where you want to include an external HTML fragment:
 
    ```html
+   <!-- index.html -->
+
    <div include-html="path/to/your/external-fragment.html"></div>
    ```
 
@@ -70,7 +72,7 @@ To use the HTML Bundler in your web page, follow these steps:
 
     <br>
 
-4. 🪄 
+4. 🪄
    Your HTML fragments will be loaded and included dynamically, replacing the elements with the include-html attribute.
    <br>
 
